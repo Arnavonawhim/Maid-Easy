@@ -132,3 +132,17 @@ GOOGLE_CLIENT_ID = os.environ.get('GOOGLE_CLIENT_ID', '')
 SMS_BACKEND = os.environ.get('SMS_BACKEND', 'console')
 SMS_API_KEY = os.environ.get('SMS_API_KEY', '')
 SMS_SENDER_ID = os.environ.get('SMS_SENDER_ID', 'MDEASY')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
