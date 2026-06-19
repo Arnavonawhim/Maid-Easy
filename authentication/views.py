@@ -142,6 +142,7 @@ class UserRegistrationView(APIView):
         email = serializer.validated_data.get("email", "").strip()
         mobile = serializer.validated_data.get("mobile", "").strip()
         username = serializer.validated_data["username"]
+        role = serializer.validated_data["role"]
         password = serializer.validated_data["password"]
         if email and User.objects.filter(email=email, is_email_verified=True).exists():
             return Response(
@@ -174,6 +175,7 @@ class UserRegistrationView(APIView):
             "email": email,
             "mobile": mobile,
             "username": username,
+            "role": role,
             "password": password,
             "channel": channel,
         })

@@ -25,7 +25,7 @@ _BASE_HTML = """<!DOCTYPE html>
           <tr>
             <td style="background:#4F46E5;padding:32px 40px;text-align:center;">
               <h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:700;
-                         letter-spacing:0.5px;">MaidEasy</h1>
+                         letter-spacing:0.5px;">HoMiee</h1>
             </td>
           </tr>
 
@@ -47,7 +47,7 @@ _BASE_HTML = """<!DOCTYPE html>
                 </a>
               </p>
               <p style="margin:8px 0 0;font-size:12px;color:#9ca3af;">
-                &copy; 2025 MaidEasy. All rights reserved.
+                &copy; 2025 HoMiee. All rights reserved.
               </p>
             </td>
           </tr>
@@ -88,15 +88,15 @@ def _send_email(to_email: str, subject: str, plain_body: str, html_body: str) ->
 def send_otp_email(email: str, otp: str, purpose: str):
     logger.info("Sending OTP email to %s (purpose=%s)", email, purpose)
 
-    support = "support@maideasy.com"
+    support = "support@HoMiee.com"
 
     if purpose == "registration":
-        subject = "Verify your MaidEasy account"
+        subject = "Verify your HoMiee account"
         heading = "Verify Your Account"
         intro = "Thanks for signing up! Use the OTP below to complete your registration."
         note = "This code is valid for"
     else:
-        subject = "MaidEasy — Password Reset OTP"
+        subject = "HoMiee — Password Reset OTP"
         heading = "Reset Your Password"
         intro = "We received a request to reset your password. Use the OTP below to proceed."
         note = "This code is valid for"
@@ -136,7 +136,7 @@ def send_otp_email(email: str, otp: str, purpose: str):
         f"This code expires in {settings.OTP_EXPIRY_MINUTES} minutes. "
         f"Do not share it with anyone.\n\n"
         f"If you didn't request this, ignore this email.\n\n"
-        f"— MaidEasy Support ({support})"
+        f"— HoMiee Support ({support})"
     )
 
     html_body = _build_email(subject, body_html, support)
@@ -147,15 +147,15 @@ def send_otp_email(email: str, otp: str, purpose: str):
 def send_welcome_email(email: str, username: str):
     logger.info("Sending welcome email to %s", email)
 
-    support = "support@maideasy.com"
-    subject = "Welcome to MaidEasy! "
+    support = "support@HoMiee.com"
+    subject = "Welcome to HoMiee! "
 
     body_html = f"""
       <h2 style="margin:0 0 16px;font-size:20px;color:#111827;">
         Welcome aboard, {username}!
       </h2>
       <p style="margin:0 0 16px;font-size:15px;color:#374151;line-height:1.6;">
-        Your MaidEasy account is all set. We're excited to have you with us.
+        Your HoMiee account is all set. We're excited to have you with us.
       </p>
       <p style="margin:0 0 24px;font-size:15px;color:#374151;line-height:1.6;">
         You can now log in and start exploring our services.
@@ -163,11 +163,11 @@ def send_welcome_email(email: str, username: str):
       <table cellpadding="0" cellspacing="0" style="margin:0 auto 24px;">
         <tr>
           <td align="center" bgcolor="#4F46E5" style="border-radius:6px;">
-            <a href="https://maideasy.com"
+            <a href="https://HoMiee.com"
                style="display:inline-block;padding:12px 32px;font-size:15px;
                       font-weight:600;color:#ffffff;text-decoration:none;
                       border-radius:6px;">
-              Go to MaidEasy
+              Go to HoMiee
             </a>
           </td>
         </tr>
@@ -178,10 +178,10 @@ def send_welcome_email(email: str, username: str):
     """
 
     plain_body = (
-        f"Welcome to MaidEasy, {username}!\n\n"
-        f"Your account is ready. Log in at https://maideasy.com\n\n"
+        f"Welcome to HoMiee, {username}!\n\n"
+        f"Your account is ready. Log in at https://HoMiee.com\n\n"
         f"If you need help, reach us at {support}.\n\n"
-        f"— The MaidEasy Team"
+        f"— The HoMiee Team"
     )
 
     html_body = _build_email(subject, body_html, support)
@@ -192,15 +192,15 @@ def send_welcome_email(email: str, username: str):
 def send_goodbye_email(email: str, username: str):
     logger.info("Sending goodbye email to %s", email)
 
-    support = "support@maideasy.com"
-    subject = "Your MaidEasy account has been deleted"
+    support = "support@HoMiee.com"
+    subject = "Your HoMiee account has been deleted"
 
     body_html = f"""
       <h2 style="margin:0 0 16px;font-size:20px;color:#111827;">
         Goodbye, {username}
       </h2>
       <p style="margin:0 0 16px;font-size:15px;color:#374151;line-height:1.6;">
-        Your MaidEasy account has been permanently deleted as requested.
+        Your HoMiee account has been permanently deleted as requested.
         All your data has been removed from our systems.
       </p>
       <p style="margin:0 0 24px;font-size:15px;color:#374151;line-height:1.6;">
@@ -214,10 +214,10 @@ def send_goodbye_email(email: str, username: str):
 
     plain_body = (
         f"Goodbye, {username}.\n\n"
-        f"Your MaidEasy account has been permanently deleted. "
+        f"Your HoMiee account has been permanently deleted. "
         f"All your data has been removed.\n\n"
         f"If this was a mistake, contact us at {support}.\n\n"
-        f"— The MaidEasy Team"
+        f"— The HoMiee Team"
     )
 
     html_body = _build_email(subject, body_html, support)

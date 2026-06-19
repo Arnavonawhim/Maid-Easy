@@ -1,5 +1,8 @@
 import re
 from rest_framework import serializers
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 def validate_strong_password(value: str) -> str:
     errors = []
@@ -35,12 +38,14 @@ def validate_mobile_format(value: str) -> str:
         raise serializers.ValidationError("Mobile number must be exactly 10 digits.")
     return value
 
+
 class UserRegistrationSerializer(serializers.Serializer):
     fname = serializers.CharField(required=True, max_length=30)
     lname = serializers.CharField(required=True, max_length=30)
     email = serializers.EmailField(required=False, allow_blank=True)
     mobile = serializers.CharField(required=False, allow_blank=True, max_length=15)
     username = serializers.CharField(required=True)
+    role = serializers.ChoiceField(choices=User.Role.choices, required=True)
     password = serializers.CharField(write_only=True, required=True, style={"input_type": "password"})
     password2 = serializers.CharField(write_only=True, required=True, style={"input_type": "password"},
                                        help_text="Must match password.")

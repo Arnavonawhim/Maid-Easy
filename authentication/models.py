@@ -28,17 +28,12 @@ class User(AbstractBaseUser):
 
     class Role(models.TextChoices):
         ADMIN = "admin", "Admin"
-        MAID = "maid", "Maid"
-        CUSTOMER = "customer", "Customer"
+        HELPER = "helper", "Helper"
+        RESIDENT = "resident", "Resident"
 
     fname = models.CharField(verbose_name="First Name", max_length=30)
     lname = models.CharField(verbose_name="Last Name", max_length=30)
-    role = models.CharField(
-        verbose_name="Role",
-        max_length=20,
-        choices=Role.choices,
-        default=Role.CUSTOMER,
-    )
+    role = models.CharField(verbose_name="Role",max_length=20,choices=Role.choices,default=Role.RESIDENT,)
     email = models.EmailField(verbose_name="Email Address", max_length=255, unique=True, blank=True, null=True, db_index=True)
     mobile = models.CharField(verbose_name="Mobile Number", max_length=15, unique=True, blank=True, null=True, db_index=True)
     username = models.CharField(verbose_name="Username", max_length=15, unique=True, db_index=True)
@@ -49,9 +44,7 @@ class User(AbstractBaseUser):
     is_mobile_verified = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
     objects = UserManager()
-
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["fname", "lname"]
 
